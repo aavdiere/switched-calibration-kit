@@ -1,0 +1,18 @@
+(footprint "TIE_GND" (version 20221018) (generator pcbnew)
+  (layer "F.Cu")
+  (attr through_hole)
+  (fp_text reference "REF**" (at 0 -1 unlocked) (layer "F.SilkS") hide
+      (effects (font (size 1 1) (thickness 0.1)))
+    (tstamp 92157450-9240-4f1f-9688-ac2c5feeaabb)
+  )
+  (fp_text value "TIE_GND" (at 0 1 unlocked) (layer "F.Fab") hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp d37883d2-75e4-488d-9105-c77c059f7638)
+  )
+  (fp_text user "${REFERENCE}" (at 0 2.5 unlocked) (layer "F.Fab") hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp aa00c2c9-ee14-4559-9aec-26469440f7fc)
+  )
+  (pad "1" thru_hole circle (at 0 0) (size 0.6 0.6) (drill 0.2) (layers "*.Cu") (tstamp 63f6e3cd-3deb-4414-b89e-e0907c3e05d9))
+  (pad "2" smd circle (at 0 0) (size 0.6 0.6) (layers "B.Cu") (tstamp fcd485f2-0522-4968-a873-f547e5150725))
+)

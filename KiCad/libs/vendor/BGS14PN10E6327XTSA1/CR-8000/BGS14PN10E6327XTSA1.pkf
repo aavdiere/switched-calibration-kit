@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "BGS14PN10E6327XTSA1"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "BGS14PN10E6327XTSA1")
+        (spec "default")
+    )
+)

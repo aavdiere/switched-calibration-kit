@@ -1,0 +1,142 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "BGS14PN10E6327XTSA1"
+   (description "RF Switch ICs CMOS SWITCH")
+   (family "ANA")
+   (package "BGS14PN10E6327XTSA1")
+   (attribute "Datasheet Link" "")
+   (attribute "Geometry.Height" "0.4mm")
+   (attribute "Mouser Part Number" "726-BGS14PN10E6327X")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/BGS14PN10E6327XTSA1?qs=Qyx3PVvfm66pcd0rXrz2LA%3D%3D")
+   (attribute "Manufacturer_Name" "Infineon")
+   (attribute "Manufacturer_Part_Number" "BGS14PN10E6327XTSA1")
+   (gate
+    (symbol "BGS14PN10E6327XTSA1")
+    (pin "RF1_" 1 PS)
+    (pin "GND_1" 2 PS)
+    (pin "RF2" 3 PS)
+    (pin "VDD" 4 PS)
+    (pin "CTRL1" 5 PS)
+    (pin "CTRL2" 6 PS)
+    (pin "RF4" 7 PS)
+    (pin "GND_2" 8 PS)
+    (pin "RF3" 9 PS)
+    (pin "ANT" 10 PS)
+   )
+  )
+  (symbol "BGS14PN10E6327XTSA1"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 1000 100) (pt 1000 -500) (pt 200 -500) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1200 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1200 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1200 -200) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1200 -300) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1200 -400) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "BGS14PN10E6327XTSA1"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -0.55 0.75)
+      (pt 0.55 0.75)
+      (pt 0.55 -0.75)
+      (pt -0.55 -0.75)
+      (pt -0.55 0.75))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1.55 1.75)
+      (pt 1.55 1.75)
+      (pt 1.55 -2.05)
+      (pt -1.55 -2.05)
+      (pt -1.55 1.75))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 0.4 -1)
+      (arc (pt 0.400 -1.000) (pt 0.400 -1.050) (pt 0.500 -0.950) (start 180.0) (sweep 180.0))
+      (pt 0.5 -1)
+      (arc (pt 0.500 -1.000) (pt 0.400 -1.050) (pt 0.500 -0.950) (start 180.0) (sweep .0))
+      (pt 0.4 -1))))
+   (leg 1 (pt 0.400 -0.600) (padstack 0))
+   (leg 2 (pt 0.400 -0.200) (padstack 0))
+   (leg 3 (pt 0.400 0.200) (padstack 0))
+   (leg 4 (pt 0.400 0.600) (padstack 0))
+   (leg 5 (pt 0.000 0.600) (padstack 0))
+   (leg 6 (pt -0.400 0.600) (padstack 0))
+   (leg 7 (pt -0.400 0.200) (padstack 0))
+   (leg 8 (pt -0.400 -0.200) (padstack 0))
+   (leg 9 (pt -0.400 -0.600) (padstack 0))
+   (leg 10 (pt 0.000 -0.600) (padstack 0))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (square 0.250))
+   )
+   (model "BGS14PN10E6327XTSA1.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

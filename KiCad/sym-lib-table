@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Infineon")(type "KiCad")(uri "${KIPRJMOD}/libs/Infineon.kicad_sym")(options "")(descr ""))
+)

@@ -1,0 +1,16 @@
+.BGS14PN10E6327XTSA1 :1 ;RF Switch ICs CMOS SWITCH
+BGS14PN10E6327XTSA1
+*STM IC
+*NGS
+*PLB 1="RF1 " 2="GND_1" 3="RF2" 4="VDD" 5="CTRL1" 6="CTRL2" 7="RF4" 8="GND_2" 9="RF3" 10="ANT"
+*MXP 10
+*DFN BGS14PN10E6327XTSA1
+~!Mouser Part Number (726-BGS14PN10E6327X)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/BGS14PN10E6327XTSA1?qs=Qyx3PVvfm66pcd0rXrz2LA%3D%3D)
+~!Manufacturer_Name (Infineon)
+~!Manufacturer_Part_Number (BGS14PN10E6327XTSA1)
+~!Link Datasheet (-)
+~!Height (0.4mm)
+~!3D_Model (BGS14PN10E6327XTSA1)
+BGS14PN10E6327XTSA1
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 7.1!U 8.1!U 9.1!U 10.1!U 

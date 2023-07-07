@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'BGS14PN10E6327XTSA1'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Infineon", "BGS14PN10E6327XTSA1" (!) = "", "BGS14PN10E6327XTSA1", "Other", "726-BGS14PN10E6327X", "https://www.mouser.co.uk/ProductDetail/Infineon-Technologies/BGS14PN10E6327XTSA1?qs=Qyx3PVvfm66pcd0rXrz2LA%3D%3D", "RF Switch ICs CMOS SWITCH", "", "0.4 mm"
+END_PART
+
+END.

@@ -1,0 +1,9 @@
+Manufacturer=Infineon
+PartNumber=BGS14PN10E6327XTSA1
+PartCategory=Integrated Circuit
+PackageCategory=Other
+PinCount=10
+Version=1.2
+Released=2020-03-01 12:48:58
+Downloaded=2023-04-03 12:16:40
+3D=Y

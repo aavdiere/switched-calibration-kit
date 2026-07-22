@@ -1,0 +1,22 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model CPG-02-SMT-B
+#/20137910/630283/2.50/1/2/Connector
+DEF CPG-02-SMT-B J 0 30 Y Y 1 F N
+F0 "J" 650 300 50 H V L CNN
+F1 "CPG-02-SMT-B" 650 200 50 H V L CNN
+F2 "CPG02SMTB" 650 100 50 H I L CNN
+F3 "https://www.sameskydevices.com/product/resource/cpg-02-smt-b.pdf" 650 0 50 H I L CNN
+F4 "50 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Surface Mount, Pogo Pin" 650 -100 50 H I L CNN "Description"
+F5 "8.15" 650 -200 50 H I L CNN "Height"
+F6 "179-CPG-02-SMT-B" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/Same-Sky/CPG-02-SMT-B?qs=dbcCsuKDzFUx5AegzpF7Lw%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "Same Sky" 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "CPG-02-SMT-B" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X 1 1 0 0 200 R 50 50 0 0 P
+P 5 0 1 6 200 100 600 100 600 -100 200 -100 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library

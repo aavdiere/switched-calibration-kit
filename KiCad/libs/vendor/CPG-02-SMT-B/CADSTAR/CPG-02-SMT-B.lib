@@ -1,0 +1,16 @@
+.CPG-02-SMT-B :1 ;50 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Surface Mount, Pogo Pin
+CPG02SMTB
+*STM J
+*NGS
+*PLB 1="1"
+*MXP 1
+*DFN CPG-02-SMT-B
+~!Mouser Part Number (179-CPG-02-SMT-B)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Same-Sky/CPG-02-SMT-B?qs=dbcCsuKDzFUx5AegzpF7Lw%3D%3D)
+~!Manufacturer_Name (Same Sky)
+~!Manufacturer_Part_Number (CPG-02-SMT-B)
+~!Link Datasheet (https://www.sameskydevices.com/product/resource/cpg-02-smt-b.pdf)
+~!Height (8.15mm)
+~!3D_Model (CPG-02-SMT-B)
+CPG-02-SMT-B
+1.1!U 

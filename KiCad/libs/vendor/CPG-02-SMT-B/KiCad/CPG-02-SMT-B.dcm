@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CPG-02-SMT-B
+D 50 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Surface Mount, Pogo Pin
+K
+F https://www.sameskydevices.com/product/resource/cpg-02-smt-b.pdf
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'CPG_02_SMT_B'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Same Sky", "CPG-02-SMT-B" (!) = "", "CPG02SMTB", "Other", "179-CPG-02-SMT-B", "https://www.mouser.co.uk/ProductDetail/Same-Sky/CPG-02-SMT-B?qs=dbcCsuKDzFUx5AegzpF7Lw%3D%3D", "50 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Surface Mount, Pogo Pin", "https://www.sameskydevices.com/product/resource/cpg-02-smt-b.pdf", "8.15 mm"
+END_PART
+
+END.

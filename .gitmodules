@@ -1,0 +1,3 @@
+[submodule "vendor/KiCad-CustomDesignRules"]
+	path = vendor/KiCad-CustomDesignRules
+	url = git@github.com:Cimos/KiCad-CustomDesignRules.git

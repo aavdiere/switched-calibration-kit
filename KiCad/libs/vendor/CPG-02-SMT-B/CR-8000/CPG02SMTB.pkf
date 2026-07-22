@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "CPG02SMTB"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "CPG02SMTB")
+        (spec "default")
+    )
+)

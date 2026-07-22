@@ -1,0 +1,9 @@
+Manufacturer=Same Sky
+PartNumber=CPG-02-SMT-B
+PartCategory=Connector
+PackageCategory=Other
+PinCount=1
+Version=7.3
+Released=2024-12-08 07:31:00
+Downloaded=2026-07-17 16:40:32
+3D=Y

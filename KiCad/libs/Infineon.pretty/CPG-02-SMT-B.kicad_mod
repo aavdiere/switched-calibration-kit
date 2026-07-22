@@ -1,0 +1,209 @@
+(footprint "CPG-02-SMT-B"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "CPG-02-SMT-B-1")
+	(tags "Connector")
+	(property "Reference" "J**"
+		(at 0 -1.6 0)
+		(layer "F.SilkS")
+		(uuid "aec4494d-180a-49bb-913a-bee63c6b9a8e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+			(justify bottom)
+		)
+	)
+	(property "Value" "CPG-02-SMT-B"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "26aadd0f-c628-4418-9db6-6f43eb31118d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.sameskydevices.com/product/resource/cpg-02-smt-b.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bc9a177e-b2b8-4f89-8ce8-741b9e39ae98")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" "Pogo Pin, Surface Mount, 12 Vdc, 2 A, Spring Loaded, Gold Plated, 50 gf Mid Compression Operating Force"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "78a9dad7-fedf-49bf-b973-1e2b6e95c007")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -1.8 0)
+		(end -1.8 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "747f59f5-dedf-4cec-9b4f-d52501074bc3")
+	)
+	(fp_line
+		(start -1.7 0)
+		(end -1.7 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "093f4470-4461-4ed2-a325-35e5c6a962e9")
+	)
+	(fp_arc
+		(start -1.8 0)
+		(mid -1.75 -0.05)
+		(end -1.7 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4b10243c-8540-450e-b2b3-713a76da9be2")
+	)
+	(fp_arc
+		(start -1.7 0)
+		(mid -1.75 0.05)
+		(end -1.8 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5422b130-3a38-4f22-bfc6-6d616523d6ad")
+	)
+	(fp_line
+		(start -2 -2)
+		(end 2 -2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0c5485d4-f931-4181-bb34-84f1a15a3eed")
+	)
+	(fp_line
+		(start -2 2)
+		(end -2 -2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "cb1df140-4737-48ac-a9ff-8b5676b52157")
+	)
+	(fp_line
+		(start 2 -2)
+		(end 2 2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "9bfb3ff7-998c-4105-b178-7fe257c31c2b")
+	)
+	(fp_line
+		(start 2 2)
+		(end -2 2)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "34a06c8d-942b-41c0-93f3-1180d77fc44a")
+	)
+	(fp_line
+		(start -1.3 0)
+		(end -1.3 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c9e119b9-80c5-4d94-903a-64466f3c4cfa")
+	)
+	(fp_line
+		(start 1.3 0)
+		(end 1.3 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "3c19a93f-5ed0-45c2-ab28-633a2e7d479a")
+	)
+	(fp_arc
+		(start -1.3 0)
+		(mid 0 -1.3)
+		(end 1.3 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "de4f7f18-1709-48e8-9cda-ad86b07069ad")
+	)
+	(fp_arc
+		(start 1.3 0)
+		(mid 0 1.3)
+		(end -1.3 0)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "cac93cd7-ae65-461a-9c23-0251f5e88d3e")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "6f00378b-82b1-4fbc-96f7-ffed4fb6e5e4")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd circle
+		(at 0 0 90)
+		(size 2.2 2.2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "14b5163e-759e-4d99-adea-4ab367eb5b5a")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/libs/vendor/CPG-02-SMT-B/3D/CPG-02-SMT-B.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)

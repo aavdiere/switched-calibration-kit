@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "CPG01THB"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "CPG01THB")
+        (spec "default")
+    )
+)

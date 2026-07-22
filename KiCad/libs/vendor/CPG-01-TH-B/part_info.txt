@@ -1,0 +1,9 @@
+Manufacturer=Same Sky
+PartNumber=CPG-01-TH-B
+PartCategory=Connector
+PackageCategory=Other
+PinCount=1
+Version=8.4
+Released=2024-06-05 06:28:08
+Downloaded=2026-07-21 09:13:04
+3D=Y

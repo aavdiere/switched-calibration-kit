@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "CPG-01-TH-B"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2024-06-05-06:28:08)
+    (mountForm default
+        (footprintRef "CPG01THB")
+        (spec "System")
+    )
+)

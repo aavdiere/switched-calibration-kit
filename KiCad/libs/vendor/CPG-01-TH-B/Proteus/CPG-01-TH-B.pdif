@@ -1,0 +1,91 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "CPG-01-TH-B"
+   (description "100 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Through Hole, Pogo Pin")
+   (family "CON")
+   (package "CPG01THB")
+   (attribute "Datasheet Link" "https://www.sameskydevices.com/product/resource/cpg-01-th-b.pdf")
+   (attribute "Geometry.Height" "11.2mm")
+   (attribute "Mouser Part Number" "179-CPG-01-TH-B")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Same-Sky/CPG-01-TH-B?qs=dbcCsuKDzFWXNDxcLwlRdg%3D%3D")
+   (attribute "Manufacturer_Name" "Same Sky")
+   (attribute "Manufacturer_Part_Number" "CPG-01-TH-B")
+   (gate
+    (symbol "CPG-01-TH-B")
+    (pin "1" 1 PS)
+   )
+  )
+  (symbol "CPG-01-TH-B"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 600 100) (pt 600 -100) (pt 200 -100) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "CPG01THB"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -2 2)
+      (pt 2 2)
+      (pt 2 -2)
+      (pt -2 -2)
+      (pt -2 2))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1 0)
+      (arc (pt -1.000 0.000) (pt -1.000 -1.000) (pt 1.000 1.000) (start 180.0) (sweep -180.0))
+      (pt 1 0)
+      (arc (pt 1.000 0.000) (pt -1.000 -1.000) (pt 1.000 1.000) (start 180.0) (sweep .0))
+      (pt -1 0))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1.4 0)
+      (arc (pt -1.400 0.000) (pt -1.500 -0.050) (pt -1.400 0.050) (start 180.0) (sweep .0))
+      (pt -1.5 0)
+      (arc (pt -1.500 0.000) (pt -1.500 -0.050) (pt -1.400 0.050) (start 180.0) (sweep -180.0))
+      (pt -1.4 0))))
+   (leg 1 (pt 0.000 0.000) (padstack 0))
+   (padstack 0
+    (hole 0.8)
+    (plated true)
+    (pad (layer TCOP) (round 1.700))
+    (pad (layer INNER) (round 1.700))
+    (pad (layer BCOP) (round 1.700))
+   )
+   (model "CPG-01-TH-B.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

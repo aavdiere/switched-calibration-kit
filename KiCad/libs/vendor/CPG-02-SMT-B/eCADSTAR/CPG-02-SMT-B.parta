@@ -1,0 +1,62 @@
+(Japanese_coding: sjis)
+(function "ECS_20137910"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2024-12-08-07:31:00)
+    (utime 2026-05-20-15:53:20)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+    )
+    (property "symbolName" "CPG-02-SMT-B")
+)
+
+
+(pinAssign "ECS_20137910"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2024-12-08-07:31:00)
+    (utime 2026-05-20-15:53:20)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_20137910")
+                (port "1" (match "1"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "CPG-02-SMT-B")
+)
+
+
+(part "CPG-02-SMT-B"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2024-12-08-07:31:00)
+    (utime 2026-05-20-15:53:20)
+    (packageRef "CPG-02-SMT-B")
+    (pinAssignRef "ECS_20137910")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "J")
+    (property "description" "50 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Surface Mount, Pogo Pin")
+    (property "Mouser_Part_Number" "179-CPG-02-SMT-B")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/Same-Sky/CPG-02-SMT-B?qs=dbcCsuKDzFUx5AegzpF7Lw%3D%3D")
+    (property "Manufacturer_Name" "Same Sky")
+    (property "Manufacturer_Part_Number" "CPG-02-SMT-B")
+    (property "Datasheet_Link" "https://www.sameskydevices.com/product/resource/cpg-02-smt-b.pdf")
+    (property "compAreaTopHeight" 8.15)
+)
+
+

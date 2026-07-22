@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CPG-01-TH-B
+D 100 gf Mid Compression Operating Force, 12 Vdc, 2 A, Spring Loaded, Gold Plated, Through Hole, Pogo Pin
+K
+F https://www.sameskydevices.com/product/resource/cpg-01-th-b.pdf
+$ENDCMP
+#
+#End Doc Library

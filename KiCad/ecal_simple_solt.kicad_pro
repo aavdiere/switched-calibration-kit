@@ -647,7 +647,7 @@
       "netlist": "",
       "plot": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "ecal_simple_solt.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""

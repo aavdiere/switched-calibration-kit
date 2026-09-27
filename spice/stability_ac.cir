@@ -1,0 +1,59 @@
+* Small-signal stability analysis of the PI thermostat loop, linearized around
+* the settled operating point (~40.49C). Same circuit as ntc_divider.cir, just
+* swapping the .control block for .op/.ac/.pz instead of a long transient.
+.param R0=10k
+.param BETA=3428
+.param T0=298.15
+.param RTH=8
+.param CTH=39.9
+.param RHEAT=4
+
+.options savecurrents
+
+Vset nset 0 DC 1.2 AC 1
+
+Vin   n3v3 0 DC 3.3
+Rs    n3v3 ntemp 10k
+Rntc  ntemp 0 R = '{R0}*exp({BETA}*(1/(V(temp)+273.15) - 1/{T0}))'
+
+V5v    n5v 0 DC 5
+X1     n5v ngate nsource AO3400
+Rheat  nsource 0 {RHEAT}
+
+Rin  nset nfb 10k
+Rfb  ngate nmid 100k
+Cint nmid nfb 3000u
+Xopamp ntemp nfb n5v 0 ngate lmv358
+
+.include AO3400.mod
+.include LMV358.mod
+
+Vamb  namb 0 DC 22
+Rth   temp namb {RTH}
+Cth   temp 0 {CTH}
+Gheat 0 temp cur = 'I(Rheat)*V(nsource)'
+
+* nodeset (not .ic) - just a starting guess for the DC solver, not a hard
+* constraint; op finds the exact self-consistent bias from here
+.nodeset v(temp)=40.49 v(ntemp)=1.4894 v(nfb)=1.1937 v(ngate)=4.5435 v(nsource)=1.32
+
+.control
+    op
+    print v(temp) v(ntemp) v(nfb) v(ngate) v(nsource)
+
+    * closed-loop transfer function V(temp)/V(nset): poles = closed-loop poles
+    pz nset 0 temp 0 vol pz
+    print all
+
+    * Bode plot of the same transfer function, for a visual/magnitude cross-check
+    ac dec 20 1e-6 1e3
+    let Ttemp_mag = db(v(temp))
+    let Ttemp_phase = ph(v(temp))*180/3.14159265
+    wrdata build/stability_bode.txt Ttemp_mag Ttemp_phase
+    set hcopydevtype=postscript
+    hardcopy build/stability_bode_mag.ps Ttemp_mag xlabel "Frequency (Hz)" ylabel "|V(temp)/V(nset)| (dB)"
+    hardcopy build/stability_bode_phase.ps Ttemp_phase xlabel "Frequency (Hz)" ylabel "Phase (deg)"
+    exit
+.endc
+
+.end

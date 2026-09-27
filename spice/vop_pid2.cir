@@ -1,0 +1,64 @@
+* voltage-output PID thermostat controller
+
+.param RHEAT=4
+.param R0=10k
+.param BETA=3428
+.param T0=298.15
+.param RTH=8
+.param CTH=39.9
+
+.include AO3400.mod
+.include LMV358.mod
+.include MCP6021.mod
+
+.options savecurrents
+
+V5v n5v 0 DC 5
+V3v3 n3v3 0 DC 3.3
+Vset nset 0 DC 1.2
+
+R1 nset ninv 10
+R2 ngate ninv 100k
+
+* X? + - VDD VSS out
+Xamp nsense ninv n5v 0 ngate lmv358
+
+* X? D G S
+Xfet n5v ngate1 nsource AO3400
+Rheat nsource 0 {RHEAT}
+
+Rs n3v3 nsense 10k
+Rntc nsense 0 R = '{R0}*exp({BETA}*(1/(v(temp)+273.15) - 1/{T0}))'
+
+* series injection: DC=0 never disturbs the loop's true DC bias (loop stays fully,
+* physically closed no matter what), so op/tran automatically finds the correct
+* closed-loop operating point in one shot - no manual measure-then-reinsert step
+Vinj ngate ngate1 DC 0 AC 0.1
+
+Vamb  namb 0 DC 22
+Rth   temp namb {RTH}
+Cth   temp 0 {CTH}
+Gheat 0 temp cur = 'I(Rheat)*V(nsource)'
+
+.ic v(temp)=22
+
+.control
+    * MCP6021's XSPICE code-model diverges on tran's initial-condition solve
+    * (with or without uic) - op converges fine on its own though, using
+    * .ic v(temp)=22 as the bias-point constraint
+    op
+    print v(nset) v(nsense) v(ngate) v(temp)
+
+    ac dec 20 1e-6 1e3
+    * break is between ngate (opamp output, low-Z, upstream) and ngate1 (FET gate,
+    * high-Z, downstream) - probe is response-on-source-side / injected-on-load-side
+    let loopgain_db = db(v(nsense)/v(ngate1))
+    let loopgain_phase = ph(-v(nsense)/v(ngate1))*180/3.14159265
+    plot loopgain_db loopgain_phase
+
+    let loopgain_db = db(v(ngate)/v(ngate1))
+    let loopgain_phase = ph(-v(ngate)/v(ngate1))*180/3.14159265
+    plot loopgain_db loopgain_phase
+.endc
+
+.end

@@ -1,3 +1,6 @@
 [submodule "vendor/KiCad-CustomDesignRules"]
 	path = vendor/KiCad-CustomDesignRules
 	url = git@github.com:Cimos/KiCad-CustomDesignRules.git
+[submodule "vendor/nanovna-saver"]
+	path = vendor/nanovna-saver
+	url = git@github.com:NanoVNA-Saver/nanovna-saver.git

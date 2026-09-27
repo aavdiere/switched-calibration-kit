@@ -1,0 +1,83 @@
+* Temperature driven by heater self-heating (thermal RC)
+.param RHEAT=4      ; heater resistance, Ohm
+.param R0=10k       ; nominal NTC resistance at T0, Ohm
+.param BETA=3428    ; NTC beta parameter, K
+.param T0=298.15    ; nominal NTC temperature, K (25C)
+.param RTH=8        ; thermal resistance ambient-to-heater, C/W
+                    ; fit from data/heater-*.txt (0.5-2.0A step/decay), mean of 16 runs
+                    ; note: measured Rth actually rises with power (5.1 @0.6W -> 9.9 @6.5W),
+                    ; nonlinear convection/radiation - this is a linear average, not exact
+.param CTH=40       ; thermal capacitance, J/C (tau=RTH*CTH=320s, matches measured mean tau)
+.param RSET=5.6k    ; voltage-divider setpoint resistor, Ohm (matches measured mean RSET)
+.param TSET=1/(log(RSET/R0)/BETA + 1/T0) - 273.15
+
+.include LMV321.mod
+.include AO3400.mod
+
+.options savecurrents   ; needed so @rheat[i] gives the real transient current,
+                        ; not a static op-point snapshot
+
+* dc supplies
+VBUS1 vbus_clean 0 DC 5
+VBUS2 vbus 0 DC 5
+VDDA vdda 0 DC 3.3
+V3V3 v3v3 0 DC 3.3
+
+* voltage-divider setpoint
+R1 vset_raw 0 {RSET}
+R2 vset_raw vdda 10k
+* C1 vset_raw 0 100n
+* X? + - VDD VSS out
+X1 vset_raw vset vdda 0 vset LMV321
+V1 temp_set 0 DC {TSET}
+
+* sense resistor
+R3 vsense vdda 10k
+Rntc vsense 0 R = '{R0}*exp({BETA}*(1/(v(temp)+273.15) - 1/{T0}))'
+
+* heater
+* X? D G S
+X2 vbus vgate vsource AO3400
+Rpd vgate 0 1MEG  ; required to fix singular matrix error
+Rheat vsource 0 {RHEAT}
+
+* control loop
+* X? + - VDD VSS out
+X3 vsense vinv vbus 0 verror LMV321
+R4 verror vinv 100k
+R5 vset vinv 10
+R6 verror vgate 10
+
+* X4 verror vsource vbus 0 vctrl LMV321
+* R6 vctrl vgate 10
+
+* heater model
+Vamb  namb 0 DC 22
+Rth   temp namb {RTH}
+Cth   temp 0 {CTH}
+Gheat 0 temp cur = 'I(Rheat)*V(vsource)'
+
+.ic v(temp)={TSET}
+
+* series injection: DC=0 never disturbs the loop's true DC bias (loop stays fully,
+* physically closed no matter what), so op/tran automatically finds the correct
+* closed-loop operating point in one shot - no manual measure-then-reinsert step
+Vinj verror vgate DC 0 AC 1
+
+* C2 verror 0 100n
+C3 vsource 0 5.6u
+
+.control
+    tran 1n 10u 0 uic
+    * plot v(vset) v(vsense) v(vgate) v(temp) v(temp_set)
+
+    op
+    print v(vset) v(vsense) v(vgate) v(temp) v(temp_set)
+
+    ac dec 20 1e-6 1e9
+    plot db(v(verror)/v(vgate)) ph(-v(verror)/v(vgate))*180/3.14159265
+    * plot db(v(vsource)/v(vbus)) ph(-v(vsource)/v(vbus))*180/3.14159265
+    * plot db(v(verror)/v(vbus)) ph(-v(verror)/v(vbus))*180/3.14159265
+.endc
+
+.end

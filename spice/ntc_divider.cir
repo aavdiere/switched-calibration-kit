@@ -1,0 +1,67 @@
+* 10k NTC (beta=3428K) with PCB heater
+* Temperature driven by heater self-heating (thermal RC)
+.param R0=10k
+.param BETA=3428
+.param T0=298.15
+.param RTH=8        ; thermal resistance ambient-to-heater, C/W
+                    ; fit from data/heater-*.txt (0.5-2.0A step/decay), mean of 16 runs
+                    ; note: measured Rth actually rises with power (5.1 @0.6W -> 9.9 @6.5W),
+                    ; nonlinear convection/radiation - this is a linear average, not exact
+.param CTH=39.9     ; thermal capacitance, J/C (tau=RTH*CTH=269s, matches measured mean tau)
+.param RHEAT=4      ; heater resistance, Ohm
+
+.options savecurrents ; needed so @rheat[i] gives the real transient current, not a static op-point snapshot
+
+Vset nset 0 DC 1.2
+
+Vin   n3v3 0 DC 3.3
+Rs    n3v3 ntemp 10k
+Rntc  ntemp 0 R = '{R0}*exp({BETA}*(1/(V(temp)+273.15) - 1/{T0}))'
+
+V5v    n5v 0 DC 5
+X1     n5v ngate nsource AO3400
+Rheat  nsource 0 {RHEAT}
+* opamp wired with no local feedback network was acting as a near-open-loop comparator
+* (gain~1e5), which rang/oscillated against the slow thermal plant. Real fix: add a
+* proper feedback resistor network around the op-amp so it's a defined-gain (~10x)
+* proportional amp instead of a raw comparator - this is what actually damps the loop,
+* not filtering the input (a filter just adds lag/phase shift, which made it worse -
+* turned it into a sustained relaxation oscillator, confirmed by simulation).
+* in+ = ntemp (direct), in- = nfb (setpoint summing node), out = ngate, powered off 5V
+* virtual short -> nfb=ntemp; current balance -> ngate = ntemp*(1+Rfb/Rin) - nset*(Rfb/Rin)
+* proportional gain = Rfb/Rin = 10; ntemp rises as temp falls, so colder -> ngate higher
+*
+* PI: Rfb alone gives finite DC gain -> steady-state droop (settled at 32C, not the
+* setpoint-implied 40.25C). Cint in series with Rfb makes feedback impedance -> infinity
+* as s->0 (true integral action, drives error to zero at DC). Rfb still sets the proportional/
+* zero term for stability; Ti=Rfb*Cint=300s, comparable to the thermal loop's own settling
+* time so the integrator acts gently and doesn't reintroduce the earlier ringing.
+Rin  nset nfb 10k
+Rfb  ngate nmid 100k
+Cint nmid nfb 3000u
+Xopamp ntemp nfb n5v 0 ngate lmv358
+
+.include AO3400.mod
+.include LMV358.mod
+
+* thermal network: node temp = temperature in Celsius
+Vamb  namb 0 DC 22
+Rth   temp namb {RTH}
+Cth   temp 0 {CTH}
+Gheat 0 temp cur = 'I(Rheat)*V(nsource)'
+
+.ic v(temp)=22
+
+.control
+    tran 1 3000 0 uic
+    let pfet = (V(n5v)-V(nsource))*@rheat[i]
+    set hcopydevtype=postscript
+    hardcopy build/temp_vs_time.ps v(temp) xlabel "Time (s)" ylabel "Temperature (C)"
+    hardcopy build/volt_vs_time.ps v(ntemp) xlabel "Time (s)" ylabel "Divider (V)"
+    hardcopy build/fet_power_vs_time.ps pfet xlabel "Time (s)" ylabel "Transistor Power (W)"
+    hardcopy build/gate_vs_time.ps v(ngate) xlabel "Time (s)" ylabel "Gate Voltage (V)"
+    wrdata build/sweep_data.txt v(temp) pfet v(ntemp) v(ngate)
+    exit
+.endc
+
+.end

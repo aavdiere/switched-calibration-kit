@@ -1,0 +1,19 @@
+name: cynthion
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python==3.13
+  - pip
+  - black
+  - mypy
+  - ipykernel
+  - pyusb
+  - numpy
+  - matplotlib
+  - scikit-rf
+  - pip:
+      - cynthion==0.2.3
+      - facedancer==3.1.1
+      - git+ssh://git@gitlab.ilabt.imec.be/aavdiere/idpy.git

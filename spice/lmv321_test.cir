@@ -1,0 +1,22 @@
+* test PSR of lmv321
+.include LMV321.mod
+
+VBUS vbus 0 DC 5 AC 1
+
+V1 vset 0 DC 1.2
+V2 vsense 0 DC 1.1941
+
+X1 vsense vinv vbus 0 vout LMV321
+R1 vout vinv 100k
+R2 vset vinv 10
+
+
+.control
+    op
+    print v(vsense) v(vset) v(vout)
+
+    ac dec 20 1e-6 1e9
+    plot db(v(vout)/v(vbus)) ph(-v(vout)/v(vbus))*180/3.14159265
+.endc
+
+.end

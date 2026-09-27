@@ -1,0 +1,9 @@
+# Agilent USB ECal Module (idVendor=0957, idProduct=0001)
+# This rule allows users in the 'uucp' group to access the device without sudo
+
+#SUBSYSTEM=="usb", ATTR{idVendor}=="0957", ATTR{idProduct}=="0001", GROUP="uucp", MODE="0664"
+#SUBSYSTEM=="usb", ATTR{idVendor}=="2a8d", ATTR{idProduct}=="3f01", GROUP="uucp", MODE="0664"
+
+# Alternative rule using TAG for uaccess (systemd systems)
+SUBSYSTEM=="usb", ATTR{idVendor}=="0957", ATTR{idProduct}=="0001", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="2a8d", ATTR{idProduct}=="3f01", TAG+="uaccess"

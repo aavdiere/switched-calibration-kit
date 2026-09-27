@@ -1,0 +1,24 @@
+# Annoying macOS files
+.DS_Store
+
+# Build directory
+build/
+build-debug/
+build-release/
+
+# Cortex Debug register state
+.vscode/.cortex-debug.registers.state.json
+
+# Generated files
+*~
+*.o
+*.d
+*.bin
+*.elf
+*.hex
+*.srec
+*.list
+*.map
+*.stylecheck
+generated.*.ld
+.gdb_history

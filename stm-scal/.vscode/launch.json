@@ -1,0 +1,89 @@
+{
+    "version": "0.2.0",
+    "projectName": "stm-template",
+    "configurations": [
+        {
+            "name": "JLink: Debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "jlink",
+            "request": "launch",
+            // "preLaunchTask": "flash",
+            "type": "cortex-debug",
+            "device": "STM32L476RG",
+            "runToEntryPoint": "main",
+            "interface": "swd",
+            "showDevDebugOutput": "none",
+            // "swoConfig":
+            // {
+            //     "enabled": false,
+            //     "cpuFrequency": 80000000,
+            //     "swoFrequency": 2000000,
+            //     "source": "probe",
+            //     "decoders":
+            //     [
+            //         {
+            //             "label": "ITM port 0 output",
+            //             "type": "console",
+            //             "port": 0,
+            //             "showOnStartup": false,
+            //             "encoding": "ascii"
+            //         }
+            //     ]
+            // }
+        },
+        {
+            "name": "JLink: Attach",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "jlink",
+            "request": "attach",
+            "type": "cortex-debug",
+            "device": "STM32L476RG",
+            "runToEntryPoint": "main",
+            "interface": "swd",
+            "showDevDebugOutput": "none",
+            // "swoConfig":
+            // {
+            //     "enabled": false,
+            //     "cpuFrequency": 80000000,
+            //     "swoFrequency": 2000000,
+            //     "source": "probe",
+            //     "decoders":
+            //     [
+            //         {
+            //             "label": "ITM port 0 output",
+            //             "type": "console",
+            //             "port": 0,
+            //             "showOnStartup": false,
+            //             "encoding": "ascii"
+            //         }
+            //     ]
+            // }
+        },
+        {
+            "name": "ST-Link: Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "stutil",
+            "request": "launch",
+            "type": "cortex-debug",
+            "device": "STM32L476RG",
+            "runToEntryPoint": "main",
+            "interface": "swd",
+            "showDevDebugOutput": "none",
+        },
+        {
+            "name": "ST-Link: Attach",
+            "cwd": "${workspaceFolder}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "servertype": "stutil",
+            "request": "attach",
+            "type": "cortex-debug",
+            "device": "STM32L476RG",
+            "runToEntryPoint": "main",
+            "interface": "swd",
+            "showDevDebugOutput": "none",
+        }
+    ]
+}

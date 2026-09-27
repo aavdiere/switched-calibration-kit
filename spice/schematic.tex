@@ -1,0 +1,52 @@
+\documentclass[border=10pt]{standalone}
+\usepackage[siunitx, americanvoltages, americancurrents]{circuitikz}
+\ctikzset{resistors/scale=0.8, capacitors/scale=0.8}
+
+\begin{document}
+\begin{circuitikz}[scale=1.0, every node/.style={font=\footnotesize}]
+
+% ================= Op-amp (declared first so its anchors can be used below) =================
+\node[op amp] (opamp) at (6,7) {};
+
+% ================= PI feedback rail (top row, y=11) =================
+\draw (-2,11) to[V, l_=$V_{set}$=1.2V] ++(0,-1.8) node[ground]{};
+\draw (-2,11) to[R, l=$R_{in}$=10k] (5,11) coordinate (nsum);
+\draw (nsum) to[R, l=$R_{fb}$=100k] (7,11)
+             to[C, l=$C_{int}$=3000$\mu$F] (8,11) coordinate (ngtop);
+\draw (nsum) |- (opamp.-);
+
+% ================= NTC sense divider =================
+\draw (2,9.3) to[V, l=$V_{in}$=3.3V] (2,6.5) node[ground]{};
+\draw (2,9.3) -- (2,9.6) -- (3.5,9.6)
+      to[R, l=$R_s$=10k] (3.5,8);
+\node[circ, label=right:$n_{temp}$] at (3.5,8) {};
+\draw (3.5,8) to[R, l_=$R_{ntc}(T)$] (3.5,6.5) node[ground]{};
+\draw (3.5,8) -- (4.5,8) |- (opamp.+);
+
+% ================= Op-amp wiring =================
+\draw (opamp.out) -- (8,7) coordinate (ngate);
+\node[circ, label=below:$n_{gate}$] at (ngate) {};
+\draw (opamp.up)   -- ++(0,0.4) node[above]{$n_{5v}$};
+\draw (opamp.down) -- ++(0,-0.4) node[below]{GND};
+\draw (ngtop) -- (ngate);
+
+% ================= Heater switch =================
+\draw (12,9.3) to[V, l=$V_{5v}$=5V] (12,7.4);
+\node[circ] at (12,7.4) {};
+\draw (12,7.4) -- (12.8,7.4);
+\node[nmos] (M1) at (12.8,6.4) {};
+\draw (12.8,7.4) -- (M1.D);
+\draw (ngate) -- ++(0,-3.0) -| (M1.G);
+\draw (M1.S) -- ++(0,-0.5) coordinate (nsrc);
+\node[circ, label=right:$n_{source}$] at (nsrc) {};
+\draw (nsrc) to[R, l_=$R_{heat}$=4$\Omega$] ++(0,-1.8) node[ground]{};
+
+% ================= Thermal coupling (dashed) =================
+\draw[dashed, ->, thick] (12.8,3.1) -- (12.8,0.8) -- (3.5,0.8) -- (3.5,6.3);
+\node[font=\scriptsize, align=center] at (7,2.2)
+      {thermal link: heater power $\to$ node ``temp'' (Celsius)\\
+       $R_{th}$=8 C/W, $C_{th}$=39.9 J/C, ambient=22C\\
+       $R_{ntc}$ value driven by resulting temp};
+
+\end{circuitikz}
+\end{document}

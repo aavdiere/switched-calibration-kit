@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)https://greatscottgadgets.com/2024/11-13-reverse-engineering-a-vna-ecal-interface-with-cynthion/ -->
+<html lang="en" class=" boada idc0_350">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets</title>
+	<link rel="stylesheet" type="text/css"
+		href="./Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets_files/stylesheet.css"
+		media="screen">
+	<link rel="icon" type="image/x-icon" href="https://greatscottgadgets.com/favicon.ico">
+	<link rel="apple-touch-icon" href="https://greatscottgadgets.com/apple-touch-icon.png">
+</head>
+
+<body>
+
+
+	<div id="container">
+		<div id="sidebar">
+			<a href="https://greatscottgadgets.com/"><img class="logo"
+					src="./Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets_files/gsglogosolid.png"
+					alt="Great Scott Gadgets"></a>
+
+			<ul>
+
+				<li><a href="https://greatscottgadgets.com/">Home</a></li>
+
+				<li><a href="https://greatscottgadgets.com/tags/"> • Blog Posts by Tag</a></li>
+
+				<li><a href="https://greatscottgadgets.com/about/">About</a></li>
+
+				<li><a href="https://greatscottgadgets.com/contact/">Contact</a></li>
+
+				<li><a href="https://greatscottgadgets.com/freestuff/">Free Stuff Program</a></li>
+
+				<li><a href="https://greatscottgadgets.com/jobs/">Jobs</a></li>
+
+				<li><a href="https://www.etsy.com/shop/Haxessories">Merch</a></li>
+
+				<li><a href="https://greatscottgadgets.com/opensource/">Open Source Ethos</a></li>
+
+				<li><a href="https://greatscottgadgets.com/support/">Support our Work</a></li>
+
+				<li><a href="https://greatscottgadgets.com/upcoming-events/">Upcoming Events</a></li>
+
+				<li><a href="https://greatscottgadgets.com/wheretobuy/">Where to Buy</a></li>
+
+			</ul>
+
+			<h2>Products</h2>
+			<ul>
+
+				<li><a href="https://greatscottgadgets.com/ant500/">ANT500</a></li>
+
+				<li><a href="https://greatscottgadgets.com/ant700/">ANT700</a></li>
+
+				<li><a href="https://greatscottgadgets.com/cynthion/">Cynthion</a></li>
+
+				<li><a href="https://greatscottgadgets.com/greatfet/">GreatFET Product Line</a></li>
+
+				<li><a href="https://greatscottgadgets.com/greatfet/one/"> • GreatFET One</a></li>
+
+				<li><a href="https://greatscottgadgets.com/greatfet/daffodil/"> • Daffodil</a></li>
+
+				<li><a href="https://greatscottgadgets.com/greatfet/acrylic-case/"> • GreatFET Acrylic Case</a></li>
+
+				<li><a href="https://greatscottgadgets.com/hackrf/">HackRF Product Line</a></li>
+
+				<li><a href="https://greatscottgadgets.com/hackrf/one/"> • HackRF One</a></li>
+
+				<li><a href="https://greatscottgadgets.com/hackrf/pro/"> • HackRF Pro</a></li>
+
+				<li><a href="https://greatscottgadgets.com/hackrf/operacake/"> • Opera Cake</a></li>
+
+				<li><a href="https://greatscottgadgets.com/hackrf/acrylic-case/"> • HackRF Acrylic Case</a></li>
+
+				<li><a href="https://greatscottgadgets.com/throwingstar/">Throwing Star LAN Tap</a></li>
+
+				<li><a href="https://greatscottgadgets.com/yardstickone/">YARD Stick One</a></li>
+
+			</ul>
+
+			<h2>Current Projects</h2>
+			<ul>
+
+				<li><a href="https://greatscottgadgets.com/urti/">URTI</a></li>
+
+			</ul>
+
+			<h2>Past Projects</h2>
+			<ul>
+
+				<li><a href="https://greatscottgadgets.com/daisho/">Daisho</a></li>
+
+				<li><a href="https://greatscottgadgets.com/fireflycap/">Firefly Cap</a></li>
+
+				<li><a href="https://greatscottgadgets.com/h2hc2013badge/">H2HC 2013 Badge</a></li>
+
+				<li><a href="https://greatscottgadgets.com/toorcamp2018badge/">ToorCamp 2018 Badge</a></li>
+
+				<li><a href="https://greatscottgadgets.com/tc13badge/">ToorCon 13 Badge</a></li>
+
+				<li><a href="https://greatscottgadgets.com/tc14badge/">ToorCon 14 Badge</a></li>
+
+				<li><a href="https://greatscottgadgets.com/ubertoothone/">Ubertooth One</a></li>
+
+			</ul>
+
+			<h2>Education</h2>
+			<ul>
+
+				<li><a href="https://greatscottgadgets.com/presentations/">Presentations</a></li>
+
+				<li><a href="https://greatscottgadgets.com/sdr/">SDR with HackRF</a></li>
+
+				<li><a href="https://greatscottgadgets.com/tr/">Technical Reports</a></li>
+
+				<li><a href="https://greatscottgadgets.com/pocorgtfo/">PoC||GTFO</a></li>
+
+			</ul>
+
+			<h2>Social Media</h2>
+			<ul>
+
+				<li><a href="https://bsky.app/profile/greatscottgadgets.bsky.social">Bluesky</a></li>
+
+				<li><a href="https://discord.gg/rsfMw3rsU8">Discord</a></li>
+
+				<li><a href="https://github.com/greatscottgadgets">GitHub</a></li>
+
+				<li><a href="https://www.instagram.com/greatscottgadgets/">Instagram</a></li>
+
+				<li><a href="https://mastodon.social/@GreatScottGadgets">Mastodon</a></li>
+
+				<li><a href="https://www.youtube.com/GreatScottGadgets">YouTube</a></li>
+
+			</ul>
+		</div>
+		<main id="main">
+			<title>Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets</title>
+			<article class="post">
+				<header class="entry-header">
+					<h1 class="title">Great Scott Gadgets</h1>
+					<h1 class="entry-title">Reverse-engineering a VNA ECal Interface With Cynthion</h1>
+					<hr>
+
+
+					<div class="entry-meta">
+						<span class="posted-on"><time class="entry-date published"
+								date="2024-11-13 08:00:00 +0000 UTC">13 November 2024 08:00</time></span>
+
+						<span class="author">by Mike Walters</span>
+
+
+						<span> (<a href="https://greatscottgadgets.com/tags/cynthion">cynthion</a>) </span>
+
+
+
+						<span class="link"> (<a
+								href="https://greatscottgadgets.com/2024/11-13-reverse-engineering-a-vna-ecal-interface-with-cynthion/"
+								rel="bookmark">permalink</a>) </span>
+					</div>
+
+				</header>
+
+				<div class="entry-content">
+					<p>Recently I’ve been working on a little reverse-engineering project, hoping to make some of my
+						electronics test equipment more convenient to use.</p>
+					<p>Often when doing reverse-engineering, a general strategy that I follow is to make (informed)
+						guesses about how something might work and then I go looking for ways to prove that right or
+						wrong.
+						In this project, <a href="https://greatscottgadgets.com/cynthion/">Cynthion</a> was really
+						useful for that process as I could use it to emulate part of the target system, so that I could
+						quickly and easily test out theories about the protocol.</p>
+					<p>This write-up goes over some of the progress I’ve made so far and hopefully it will provide some
+						helpful techniques you can use in your own projects!</p>
+					<p><img src="./Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets_files/ecal-vna.jpg"
+							alt="VNA with a Cynthion plugged in"></p>
+					<h2 id="background">Background</h2>
+					<p>In my work and hobby projects, I’m often using a <a
+							href="https://en.wikipedia.org/wiki/Network_analyzer_(electrical)">Vector Network
+							Analyzer</a> (VNA) to measure RF components.
+						Ideally, on each power-up and whenever the measurement parameters are changed, the VNA should be
+						calibrated by connecting and measuring a set of four standards in turn on each of the two
+						measurement ports.
+						This can get a little tedious if you need to re-calibrate often, so an alternative option is to
+						use an Electronic Calibration module (ECal) which only requires one connection per port and then
+						has internal switches to select between the different standards automatically.
+						ECal modules are available for my VNA (an Agilent E8803A), but they’re rare and expensive, so
+						I’d like to figure out how the VNA communicates with them so that I can implement it myself in
+						an open-source ECal.</p>
+					<h2 id="reverse-engineering-options">Reverse-engineering options</h2>
+					<p>Of course, the easiest way to do this would be to connect an ECal module and capture the USB
+						traffic (with <a
+							href="https://packetry.readthedocs.io/en/latest/what_is_packetry.html">Packetry</a>!), but
+						an actual ECal is too elusive.</p>
+					<p>The next option is to disassemble and analyze the software running on the VNA, which I spent a
+						bit of time doing, but it was slow going as I’m not too familiar with the APIs on Windows and
+						how it uses them for USB.
+						However, there are some quick things to learn by looking at the software. It’s split into many
+						DLLs, so it’s easy to see the imports and exports of each and get an idea of the functionality
+						we might expect from the USB ECal:</p>
+					<pre tabindex="0"><code>$ winedump -j export ecalusb.dll 
+Contents of ecalusb.dll: 33280 bytes
+
+[...]
+
+  Entry Pt  Ordn  Name
+  00001F50     1 ReadModule
+  00002160     2 SetState
+  00001F90     3 ReadModule1K
+  000016D0     4 Reset
+  00001FD0     5 ReadModuleData
+  00002010     6 WriteModuleData
+  00002210     7 EraseSector
+
+Done dumping ecalusb.dll
+</code></pre>
+					<p>So, it should have ways to read and write data on the module, which makes sense as it needs to
+						store S-parameter data describing the characteristics of the different standards to be used for
+						calibration. It also has <code>SetState</code>, which probably sets the switch positions to
+						select different standards on each port.</p>
+					<h2 id="device-emulation">Device Emulation</h2>
+					<p>I decided to go down the route of emulating the ECal device, then seeing what the VNA tried to
+						request of it and iterate from there.
+						Using Cynthion with the Facedancer library you can easily emulate a USB device by writing a
+						Python script, and quickly make changes to try out different things.</p>
+					<p>I started with the <code>template.py</code> example from the <a
+							href="https://github.com/greatscottgadgets/facedancer">Facedancer project</a>. Usually, a
+						USB host will identify a particular device by looking at the vendor ID &amp; product ID and/or
+						the manufacturer/product/serial strings. From searching on forums and other test equipment
+						groups, I found the expected values for the target device and I modified the template with
+						these:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> facedancer         <span style="color:#f92672">import</span> main
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> facedancer         <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@use_inner_classes_automatically</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ECalDevice</span>(USBDevice):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    vendor_id                : int  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0957</span>
+</span></span><span style="display:flex;"><span>    product_id               : int  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0001</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    manufacturer_string      : str  <span style="color:#f92672">=</span> <span style="color:#e6db74">"Agilent Technologies"</span>
+</span></span><span style="display:flex;"><span>    product_string           : str  <span style="color:#f92672">=</span> <span style="color:#e6db74">"USB ECal Module"</span>
+</span></span><span style="display:flex;"><span>    serial_number_string     : str  <span style="color:#f92672">=</span> <span style="color:#e6db74">"S/N 12346"</span>
+</span></span><span style="display:flex;"><span>    device_speed             : DeviceSpeed <span style="color:#f92672">=</span> DeviceSpeed<span style="color:#f92672">.</span>FULL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ECalConfiguration</span>(USBConfiguration):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ECalInterface</span>(USBInterface):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ECalInEndpoint</span>(USBEndpoint):
+</span></span><span style="display:flex;"><span>                number               : int                    <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                direction            : USBDirection           <span style="color:#f92672">=</span> USBDirection<span style="color:#f92672">.</span>IN
+</span></span><span style="display:flex;"><span>                transfer_type        : USBTransferType        <span style="color:#f92672">=</span> USBTransferType<span style="color:#f92672">.</span>BULK
+</span></span><span style="display:flex;"><span>                max_packet_size      : int <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_data_requested</span>(self):
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>send(<span style="color:#e6db74">b</span><span style="color:#e6db74">"Hello!"</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ECalOutEndpoint</span>(USBEndpoint):
+</span></span><span style="display:flex;"><span>                number               : int                    <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                direction            : USBDirection           <span style="color:#f92672">=</span> USBDirection<span style="color:#f92672">.</span>OUT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_data_received</span>(self, data):
+</span></span><span style="display:flex;"><span>                    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">"Received data: </span><span style="color:#e6db74">{</span>data<span style="color:#e6db74">}</span><span style="color:#e6db74">"</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>main(ECalDevice)
+</span></span></code></pre>
+					</div>
+					<p>Running this script and then clicking “Detect Connected ECals” on the VNA gives the following
+						output:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ python ecal-emulate.py --suggest
+</span></span><span style="display:flex;"><span>INFO    | __init__       | Starting emulation, press <span style="color:#e6db74">'Control-C'</span> to disconnect and exit.
+</span></span><span style="display:flex;"><span>INFO    | moondancer     | Using the Moondancer backend.
+</span></span><span style="display:flex;"><span>INFO    | moondancer     | Connected FULL speed device <span style="color:#e6db74">'__main__.ECalDevice'</span> to target host.
+</span></span><span style="display:flex;"><span>INFO    | device         | Host issued a bus reset; resetting our connection.
+</span></span><span style="display:flex;"><span>INFO    | moondancer     | Target host configuration complete.
+</span></span><span style="display:flex;"><span>WARNING | device         | Stalling unhandled OUT VENDOR request 0x04 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0000, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>.
+</span></span></code></pre>
+					</div>
+					<p>This shows that the script got a vendor-specific request from the VNA, but doesn’t yet have the
+						code to handle it so it returns a <code>STALL</code> response (which is the terminology for how
+						USB devices respond to unhandled requests).
+						Since I ran it with the <code>--suggest</code> argument, stopping the script gives me a
+						suggestion for code that I can add to handle the request!</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>^CINFO    | moondancer     | Disconnecting from target host.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Automatic Suggestions
+</span></span><span style="display:flex;"><span>These suggestions are based on simple observed behavior;
+</span></span><span style="display:flex;"><span>not all of these suggestions may be useful / desirable.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Request handler code:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  @vendor_request_handler<span style="color:#f92672">(</span>number<span style="color:#f92672">=</span>4, direction<span style="color:#f92672">=</span>USBDirection.OUT<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  @to_device
+</span></span><span style="display:flex;"><span>  def handle_control_request_4<span style="color:#f92672">(</span>self, request<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Most recent request data: bytearray(b'').</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Replace me with your handler.</span>
+</span></span><span style="display:flex;"><span>      request.stall<span style="color:#f92672">()</span>
+</span></span></code></pre>
+					</div>
+					<p>I add the suggested handler to my script, but change the response from <code>stall</code> to
+						<code>ack</code> and also <code>print</code> out the request:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#f92672">--- a/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -34,4 +34,11 @@ class ECalDevice(USBDevice):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                def handle_data_received(self, data):
+</span></span><span style="display:flex;"><span>                    print(f"Received data: {data}")
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+    @vendor_request_handler(number=4, direction=USBDirection.OUT)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+    @to_device
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+    def handle_control_request_4(self, request):
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+        print(request)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+        request.ack()
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>main(ECalDevice)
+</span></span></code></pre>
+					</div>
+					<p>I ran the script and got a new message saying that there was also a vendor request number 2 to be
+						handled, so I went through the same process to handle that too.
+						After doing that, I got a lot more output - now it sent many #2 vendor requests with values
+						counting down from 0x400 (1024) by 6 each time:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>OUT VENDOR request 0x04 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0000, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0400, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x03fa, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0010, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x000a, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0004, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span></code></pre>
+					</div>
+					<p>This looked very promising, as I was expecting it to read out 1 kB of memory from the hints in
+						some of the DLL exports mentioned earlier.
+						However, I was a bit confused at this point because, while it seemed to be addressing the
+						memory, I couldn’t see any way that the device could actually return the data.
+						Due to the way USB control transfers work, there isn’t a way for an OUT request to return any
+						data - it can only ACK or NAK.</p>
+					<p>I wanted to see if there might be something else happening on the bus that I might be missing.
+						Fortunately, I have a few Cynthions about so I hooked up a second one in-line to do a packet
+						capture and see if I could learn more:</p>
+					<p><img src="./Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets_files/ecal-packets.png"
+							alt="Screenshot of Packetry doing a packet capture. After each OUT vendor request, there’s a BULK IN transfer of “Hello!”">
+					</p>
+					<p>Doh! Of course, the template example I was working from was also setting up a BULK IN endpoint to
+						return “Hello!”.
+						After each address vendor request, the VNA would request data on the bulk endpoint and receive
+						those 6 bytes, then adjust the address accordingly and repeat.
+						If I had realised, I could have just added a <code>print</code> to the handler to see that
+						happening rather than setting up the packet capture.</p>
+					<p>Now that I had a pretty good idea of how the data was being read out I could go ahead and
+						implement it properly, but I needed some appropriate data to return.
+						Fortunately I was able to find some memory dumps that another user had shared online for the
+						8506x series ECal modules.
+						They had shared them as ASCII hex dumps, so I converted them to binaries with <code>xxd</code>:
+					</p>
+					<pre tabindex="0"><code>$ head HP85062-60006.txt 
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2021.09.29 21:47:04 =~=~=~=~=~=~=~=~=~=~=~=
+dump 0 040000
+
+000000: 48 50 38 35 30 36 30 43 20 45 43 41 4C 00 E8 D1  | HP85060C ECAL... | 
+000010: 31 83 C4 02 64 00 4E 6F 76 20 32 38 20 31 39 39  | 1...d.Nov 28 199 | 
+000020: 34 00 FF FF FF FF FF FF FF FF FF FF FF FF FF FF  | 4............... | 
+000030: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  | ................ | 
+000040: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  | ................ | 
+000050: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  | ................ | 
+000060: FF FF FF FF 30 30 33 36 37 00 31 C0 50 E8 88 08  | ....00367.1.P... | 
+
+$ xxd -r HP85062-60006.txt HP85062-60006.bin
+
+$ hexdump -C HP85062-60006.bin | head
+00000000  48 50 38 35 30 36 30 43  20 45 43 41 4c 00 e8 d1  |HP85060C ECAL...|
+00000010  31 83 c4 02 64 00 4e 6f  76 20 32 38 20 31 39 39  |1...d.Nov 28 199|
+00000020  34 00 ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |4...............|
+00000030  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |................|
+*
+00000060  ff ff ff ff 30 30 33 36  37 00 31 c0 50 e8 88 08  |....00367.1.P...|
+00000070  33 35 46 33 35 46 20 4d  57 31 00 c4 04 56 e8 fb  |35F35F MW1...V..|
+00000080  08 83 c4 02 38 20 41 75  67 20 32 30 30 31 20 00  |....8 Aug 2001 .|
+00000090  41 47 49 4c 45 4e 54 2f  4d 54 41 00 b8 f8 6a eb  |AGILENT/MTA...j.|
+000000a0  93 83 3e 94 06 00 74 1e  a1 82 06 83 c0 41 a2 98  |..&gt;...t......A..|
+</code></pre>
+					<p>Then I modified my Python script to load that file and return the data from the bulk endpoint,
+						and tried again to detect the device from the VNA:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#f92672">--- a/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -14,6 +14,9 @@ class ECalDevice(USBDevice):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     serial_number_string     : str  = "S/N 12346"
+</span></span><span style="display:flex;"><span>     device_speed             : DeviceSpeed = DeviceSpeed.FULL
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+    address = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+    data = open('EEPROM/HP85062-60006.bin', 'rb').read()
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>     class ECalConfiguration(USBConfiguration):
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>         class ECalInterface(USBInterface):
+</span></span><span style="display:flex;"><span><span style="color:#75715e">@@ -25,7 +28,10 @@ class ECalDevice(USBDevice):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                 max_packet_size      : int = 64
+</span></span><span style="display:flex;"><span>                 
+</span></span><span style="display:flex;"><span>                 def handle_data_requested(self):
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-                    self.send(b"Hello!")
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+                    # Respond with 32 bytes of EEPROM data
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+                    dev = self.get_device()
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+                    addr = dev.address
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+                    self.send(dev.data[addr:addr+32])
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span> 
+</span></span><span style="display:flex;"><span>             class ECalOutEndpoint(USBEndpoint):
+</span></span><span style="display:flex;"><span>                 number               : int                    = 1
+</span></span></code></pre>
+					</div>
+					<p><img src="./Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets_files/ecal-garbled.png"
+							alt="Screenshot of the VNA software detecting an ECal, but showing garbled data"></p>
+					<p>Success! …sort of. It detected something, which is great progress, but the output is a mess.
+						After staring at it for a while, I realised my silly mistake - I’d forgotten to update the
+						address when receiving vendor request 2:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#f92672">--- a/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -44,6 +44,7 @@ class ECalDevice(USBDevice):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     @to_device
+</span></span><span style="display:flex;"><span>     def handle_control_request_2(self, request):
+</span></span><span style="display:flex;"><span>         print(request)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+        self.address = request.value
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>         request.ack()
+</span></span></code></pre>
+					</div>
+					<p>I added that, re-ran everything, and… nothing! It didn’t detect anything anymore. Something about
+						that mistake actually made it work better.</p>
+					<p>Something that’s very common in file formats is to start with a header that includes some magic
+						value and the parser will check that value before doing anything else.
+						With the mistake in place, the script was returning the first 32 bytes of data to every request,
+						so that was probably enough to pass the header check and show a detected device.
+						However, that suggests that upon implementing the addressing, now the script wasn’t returning
+						the header whenever the VNA was expecting it.</p>
+					<p>I had a look back at the pattern of #2 vendor requests:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0400, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x03e0, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0040, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>OUT VENDOR request 0x02 to DEVICE <span style="color:#f92672">[</span>value<span style="color:#f92672">=</span>0x0020, index<span style="color:#f92672">=</span>0x0000, length<span style="color:#f92672">=</span>0<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>^CINFO    | moondancer     | Disconnecting from target host.
+</span></span></code></pre>
+					</div>
+					<p>Two things stood out to me about those:</p>
+					<ol>
+						<li>The VNA starts by requesting with <code>value=0x400</code> and then counts down - that’s a
+							bit odd, I’d expect it to start at address 0 and count up.</li>
+						<li>The VNA never actually sends a request with <code>value=0x0</code>, so the script never
+							sends the header at all with the addressing in place!</li>
+					</ol>
+					<p>This got me thinking that maybe there’s some quirk in the addressing and it should actually be
+						reversed (so that a request with <code>value=0x400</code> goes to <code>address 0x0</code>).
+						I made that change and re-ran the test:</p>
+					<div class="highlight">
+						<pre tabindex="0"
+							style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#f92672">--- a/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/ecal-emulate.py
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -44,7 +44,7 @@ class ECalDevice(USBDevice):
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     @to_device
+</span></span><span style="display:flex;"><span>     def handle_control_request_2(self, request):
+</span></span><span style="display:flex;"><span>         print(request)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-        self.address = request.value
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+        self.address = 0x400 - request.value
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>         request.ack()
+</span></span></code></pre>
+					</div>
+					<p><img src="./Reverse-engineering a VNA ECal Interface With Cynthion - Great Scott Gadgets_files/ecal-correct.png"
+							alt="Screenshot of the VNA software detecting an ECal showing correct data"></p>
+					<p>Bingo! The device is detected and all the information about it looks correct now.</p>
+					<p>While there are some other details still to figure out, I’ll wrap it up there as I think it’s
+						demonstrated the process pretty well.
+						Hopefully it provides some inspiration, please let us know if you use these techniques and tools
+						in your own projects!</p>
+					<p>For anyone interested, the full code and any further research is available here: <a
+							href="https://github.com/miek/ecal-reversing">https://github.com/miek/ecal-reversing</a></p>
+
+				</div>
+			</article>
+		</main>
+	</div>
+
+	<div id="footer">© 2009 - 2025 greatscottgadgets.com
+		<br>
+		<a href="https://greatscottgadgets.com/trademarks/">trademark statement</a>
+	</div>
+
+
+
+</body>
+
+</html>

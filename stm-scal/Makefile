@@ -1,4 +1,4 @@
-BINARY			?= stm-template
+BINARY			?= stm-scal
 DEVICE			?= STM32F413ZH
 BUILD_TYPE 		?= Release
 BUILD_DIR		?= build

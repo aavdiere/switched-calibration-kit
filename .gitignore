@@ -33,3 +33,7 @@ stm-scal/vendor/**
 
 # Kicad production files
 KiCad/**/production
+
+# python
+**/.mypy_cache/
+**/__pycache__/

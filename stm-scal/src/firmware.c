@@ -1,4 +1,5 @@
 #include "common.h"
+#include "usb.h"
 
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/rcc.h>
@@ -8,7 +9,6 @@
 #define LED_PORT (GPIOB)
 #define LED_PIN (GPIO0)
 
-#define CPU_FREQ (16000000)
 #define SYSTICK_FREQ (1000)
 
 volatile uint64_t ticks = 0;
@@ -22,6 +22,9 @@ static uint64_t get_ticks(void) {
 }
 
 static void rcc_setup(void) {
+    /* 8 MHz HSE from the ST-LINK MCO, PLL to 96 MHz core and 48 MHz for USB */
+    rcc_osc_bypass_enable(RCC_HSE);
+    rcc_clock_setup_pll(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_96MHZ]);
 }
 
 static void gpio_setup(void) {
@@ -30,7 +33,7 @@ static void gpio_setup(void) {
 }
 
 static void systick_setup(void) {
-    systick_set_frequency(SYSTICK_FREQ, CPU_FREQ);
+    systick_set_frequency(SYSTICK_FREQ, rcc_ahb_frequency);
     systick_counter_enable();
     systick_interrupt_enable();
 }
@@ -40,11 +43,14 @@ int main(void) {
     gpio_setup();
 
     systick_setup();
+    usb_setup();
 
     uint64_t start_time = get_ticks();
 
     /* Infinte loop */
     for (;;) {
+        usb_poll();
+
         if (get_ticks() - start_time >= 500) {
             gpio_toggle(LED_PORT, LED_PIN);
             start_time = get_ticks();

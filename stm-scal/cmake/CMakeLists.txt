@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 ################################################################################
 # Customize
-set(BINARY stm-template)
+set(BINARY stm-scal)
 message("Project name: ${BINARY}")
 
 set(OPENCM3_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../vendor/libopencm3")
@@ -49,10 +49,13 @@ string(TOLOWER ${MCU_FAMILY} MCU_LIBNAME)
 # Files
 add_executable(${BINARY}
     ../src/firmware.c
+    ../src/usb.c
+    ../src/eeprom.c
 )
 
 target_include_directories(${BINARY} PRIVATE
     ${OPENCM3_DIR}/include
+    ${OPENCM3_DIR}/lib/usb
     ../include
 )
 

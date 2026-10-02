@@ -1,5 +1,5 @@
 BINARY			?= stm-scal
-DEVICE			?= STM32F413ZH
+DEVICE			?= STM32F042K6
 BUILD_TYPE 		?= Release
 BUILD_DIR		?= build
 ifeq ($(BUILD_TYPE), Release)  # change to build-release for release builds

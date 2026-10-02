@@ -1,13 +1,14 @@
 #include "common.h"
 #include "usb.h"
 
+#include <libopencm3/cm3/systick.h>
+#include <libopencm3/stm32/crs.h>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/rcc.h>
-#include <libopencm3/cm3/systick.h>
 
-#define LED_RCC (RCC_GPIOB)
-#define LED_PORT (GPIOB)
-#define LED_PIN (GPIO0)
+#define LED_RCC (RCC_GPIOA)
+#define LED_PORT (GPIOA)
+#define LED_PIN (GPIO9)
 
 #define SYSTICK_FREQ (1000)
 
@@ -22,9 +23,10 @@ static uint64_t get_ticks(void) {
 }
 
 static void rcc_setup(void) {
-    /* 8 MHz HSE from the ST-LINK MCO, PLL to 96 MHz core and 48 MHz for USB */
-    rcc_osc_bypass_enable(RCC_HSE);
-    rcc_clock_setup_pll(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_96MHZ]);
+    /* Crystal-less: HSI48 for core and USB, trimmed to the USB SOF by the CRS */
+    rcc_clock_setup_in_hsi48_out_48mhz();
+    rcc_set_usbclk_source(RCC_HSI48);
+    crs_autotrim_usb_enable();
 }
 
 static void gpio_setup(void) {

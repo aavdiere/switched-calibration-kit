@@ -38,5 +38,5 @@
     "cmake.sourceDirectory": "${workspaceFolder}/cmake",
     "cmake.generator": "Unix Makefiles",
     "cmake.buildDirectory": "${workspaceFolder}/build",
-    "cmake.configureSettings": { "DEVICE": "STM32F413ZH" },
+    "cmake.configureSettings": { "DEVICE": "STM32F042K6" },
 }

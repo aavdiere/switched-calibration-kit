@@ -18,12 +18,14 @@ message("Build type: ${CMAKE_BUILD_TYPE}")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 ################################################################################
+# ARM specific setup, must precede project() so compiler detection uses it
+include(./toolchain-arm-none-eabi.cmake)
+
+################################################################################
 # Setup project
 project(${BINARY})
 
 ################################################################################
-# ARM specific setup
-include(./toolchain-arm-none-eabi.cmake)
 # Device, e.g. STM32L476RG -> stm32l4.cmake + stm32l476rg.ld
 set(DEVICE STM32L476RG CACHE STRING "Target device")
 string(TOLOWER ${DEVICE} DEVICE_LC)
@@ -51,6 +53,7 @@ add_executable(${BINARY}
     ../src/firmware.c
     ../src/usb.c
     ../src/eeprom.c
+    ../src/spi_flash.c
 )
 
 target_include_directories(${BINARY} PRIVATE

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "spi_flash.h"
 #include "usb.h"
 
 #include <libopencm3/cm3/systick.h>
@@ -8,7 +9,8 @@
 
 #define LED_RCC (RCC_GPIOA)
 #define LED_PORT (GPIOA)
-#define LED_PIN (GPIO9)
+#define LED_RED (GPIO9)
+#define LED_GREEN (GPIO10)
 
 #define SYSTICK_FREQ (1000)
 
@@ -31,7 +33,7 @@ static void rcc_setup(void) {
 
 static void gpio_setup(void) {
     rcc_periph_clock_enable(LED_RCC);
-    gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED_PIN);
+    gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED_RED | LED_GREEN);
 }
 
 static void systick_setup(void) {
@@ -40,11 +42,22 @@ static void systick_setup(void) {
     systick_interrupt_enable();
 }
 
+static bool flash_test(void) {
+    uint8_t id[3];
+    spi_flash_read_id(id);
+
+    return id[0] == 0x1f;
+}
+
 int main(void) {
     rcc_setup();
     gpio_setup();
 
     systick_setup();
+
+    spi_flash_setup();
+    const uint16_t led = flash_test() ? LED_GREEN : LED_RED;
+
     usb_setup();
 
     uint64_t start_time = get_ticks();
@@ -54,7 +67,7 @@ int main(void) {
         usb_poll();
 
         if (get_ticks() - start_time >= 500) {
-            gpio_toggle(LED_PORT, LED_PIN);
+            gpio_toggle(LED_PORT, led);
             start_time = get_ticks();
         }
     }

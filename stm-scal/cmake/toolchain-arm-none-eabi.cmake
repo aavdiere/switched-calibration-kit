@@ -108,7 +108,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} \
     -Wl,--gc-sections \
     -nostartfiles \
     --static \
-    -Wl,-Map=${CMAKE_PROJECT_NAME}.map \
+    -Wl,-Map=${BINARY}.map \
     -Wl,--cref \
     -Wl,--print-memory-usage \
     -Wl,--start-group \

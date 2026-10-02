@@ -74,8 +74,7 @@ flash-jlink: $(FIRMWARE) | $(BUILD_DIR)/jlink-script
 	JLinkExe -commanderScript $(BUILD_DIR)/jlink-script
  
 flash-stlink: $(FIRMWARE)
-	st-flash write $(FIRMWARE:.elf=.bin) 0x08000000
-	st-flash reset
+	st-flash --connect-under-reset --reset write $(FIRMWARE:.elf=.bin) 0x08000000
 
 $(BUILD_DIR)/jlink-script: $(DEVICE_STAMP)
 	touch $@
